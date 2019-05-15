@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 /**
@@ -21,11 +22,28 @@ import java.util.function.Supplier;
  */
 public class TestLambda3 {
 
-    //Predicate<T>  :  断言型接口
+    @Test
+    public void test4(){
+        List<String> list = new ArrayList<String>();
+        list.add("111");
+        list.add("222");
+        list.add("333");
+        list.add("444");
+        list.add("555");
+        list.add("666");
+        List<String> stringList = filterStr(list,(s)->s.compareTo("333")>0);
+        stringList.forEach(System.out::println);
+    }
 
-    public List<String> filterStr(){
-        List list = new ArrayList();
-        return list;
+    //Predicate<T>  :  断言型接口
+    public List<String> filterStr(List<String> stringList,Predicate<String> p){
+        List strList = new ArrayList();
+        for(String str : stringList){
+            if(p.test(str)){
+                strList.add(str);
+            }
+        }
+        return strList;
     }
 
     @Test
