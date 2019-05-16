@@ -10,6 +10,10 @@ class Employee {
         super();
     }
 
+    public Employee(Integer age) {
+        this.age = age;
+    }
+
     public Employee(String name, Integer age, Float salary) {
         this.name = name;
         this.age = age;

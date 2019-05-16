@@ -32,7 +32,7 @@ public class TestLambda3 {
         list.add("555");
         list.add("666");
         List<String> stringList = filterStr(list,(s)->s.compareTo("333")>0);
-        stringList.forEach(System.out::println);
+        stringList.forEach((x)-> System.out.println(x));
     }
 
     //Predicate<T>  :  断言型接口
