@@ -2,7 +2,9 @@ package com.xuxianda;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -58,6 +60,50 @@ public class TestStreamApi2 {
     @Test
     public void test3(){
         emps.stream().distinct().forEach(System.out::println);
+    }
+
+    /*
+     * 映射
+     * map -- 接收lambda，将元素转换成其他形式或提取信息。接收一个函数作为参数，该函数会被应用到每个元素上，并将其映射成一个新的元素
+     * flapMap-接收一个函数作为参数，将流中的每个值都换成另一个流，然后把所有流连接成一个流
+     */
+
+    @Test
+    public void test4(){
+        List<String> stringList = Arrays.asList("aa", "bb", "ccc", "ddd");
+        stringList.stream().map((str)->str.toUpperCase()).forEach(System.out::println);
+        System.out.println("---------------------------------------------");
+        emps.stream().map(Employee::getAge).forEach(System.out::println);
+        System.out.println("---------------------------------------------");
+        /*Stream<Stream<Character>> stream = stringList.stream().map(TestStreamApi2::filterCharacter);
+        stream.forEach((sm)->sm.forEach(System.out::println));{{a,a},{b,b},{c,c,c}}*/
+        Stream<Character> stream = stringList.stream().flatMap(TestStreamApi2::filterCharacter);
+        stream.forEach(Test1::print1); //效果与注释代码相同  {a,a,b,b,c,c,c}
+    }
+
+    public static Stream<Character> filterCharacter(String string){
+        List<Character> list = new ArrayList<>();
+        for(int i=0;i<string.length();i++){
+            list.add(string.charAt(i));
+        }
+        return list.stream();
+    }
+
+    /**
+     * 排序   sorted()--自然排序（Comparable）
+     * sorted(Comparator com)--定制排序（Comparator）
+     */
+    @Test
+    public void test7(){
+        List<String> stringList = Arrays.asList("aa", "bb", "ccc", "ddd");
+        stringList.stream().sorted().forEach(System.out::println);
+        emps.stream().sorted((e1,e2)->{
+          if(e1.getSalary()>e2.getSalary()){
+              return -1;
+          }else {
+              return 1;
+          }
+        }).forEach(System.out::println);
     }
 
 }
