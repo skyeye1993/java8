@@ -1,6 +1,6 @@
 package com.xuxianda.day1;
 
-class Employee {
+public class Employee {
 
     private String name;
     private Integer age;
