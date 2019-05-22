@@ -1,6 +1,7 @@
 package com.xuxianda;
 
 import org.junit.Test;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -13,13 +14,13 @@ import java.util.stream.Collectors;
 public class TestStreamAPI3 {
 
     List<Employee> emps = Arrays.asList(
-            new Employee("李四",25,2222.222f),
-            new Employee("王五",35,3333.333f),
-            new Employee("赵六",45,4444.444f),
-            new Employee("田七",55,5555.555f),
-            new Employee("田七",55,5555.555f),
-            new Employee("田七",55,5555.555f),
-            new Employee("田七",55,5555.555f)
+            new Employee("李四",25,2222.222f,Status.BUSY),
+            new Employee("王五",35,3333.333f,Status.FREE),
+            new Employee("赵六",45,4444.444f,Status.VOCATION),
+            new Employee("田七",55,5555.555f,Status.BUSY),
+            new Employee("田七",55,5555.555f,Status.FREE),
+            new Employee("田七",55,5555.555f,Status.VOCATION),
+            new Employee("田七",55,5555.555f,Status.BUSY)
     );
 
     /**
@@ -92,10 +93,59 @@ public class TestStreamAPI3 {
 
     @Test
     public void test5(){
+        //求个数
         Long count = emps.stream().map(Employee::getSalary).collect(Collectors.counting());
         System.out.println(count);
         System.out.println("---------------------------------");
-        emps.stream().collect(Collectors.averagingInt(Employee::getAge));
+        //平均值
+        Double ave = emps.stream().collect(Collectors.averagingInt(Employee::getAge));
+        System.out.println(ave);
+        //总和
+        Integer sum = emps.stream().collect(Collectors.summingInt(Employee::getAge));
+        System.out.println(sum);
+        //取最大值
+        Optional<Employee> max = emps.stream().collect(Collectors.maxBy((e1, e2) -> Float.compare(e1.getSalary(), e2.getSalary())));
+        System.out.println(max.get());
+        //去最小值
+        Optional<Integer> min = emps.stream().map(Employee::getAge).collect(Collectors.minBy(Integer::compare));
+        System.out.println(min.get());
+    }
+
+    /**
+     * 分组
+     */
+    @Test
+    public void test6(){
+        Map<Status, List<Employee>> group = emps.stream().collect(Collectors.groupingBy(Employee::getStatus));
+        group.forEach((x,y)->y.forEach(System.out::println));
+    }
+
+    /**
+     * 分区
+     */
+    @Test
+    public void test7(){
+        Map<Boolean, List<Employee>> map = emps.stream().collect(Collectors.partitioningBy((e) -> e.getSalary() > 3000));
+        map.forEach((x,y)->{
+            System.out.println(x);
+            y.forEach(System.out::println);
+        });
+    }
+
+    /**
+     * 获取所有数据
+     */
+    @Test
+    public void test8(){
+        IntSummaryStatistics summaryStatistics = emps.stream().collect(Collectors.summarizingInt(Employee::getAge));
+        System.out.println(summaryStatistics.getAverage());
+        System.out.println(summaryStatistics.getMax());
+    }
+
+    @Test
+    public void test9(){
+        String collect = emps.stream().map(Employee::getName).collect(Collectors.joining(",","sadf","qwer"));
+        System.out.println(collect);
     }
 
 }

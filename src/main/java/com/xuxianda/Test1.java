@@ -1,5 +1,7 @@
 package com.xuxianda;
 
+import org.junit.Test;
+
 /**
  * @Author: xuxianda
  * @Date: 2019/5/21 14:49
@@ -10,6 +12,5 @@ public class Test1 {
     public static void print1(Character c){
         System.out.println(c);
     }
-
 }
 

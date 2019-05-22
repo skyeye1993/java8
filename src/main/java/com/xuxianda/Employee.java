@@ -5,6 +5,7 @@ class Employee {
     private String name;
     private Integer age;
     private Float salary;
+    private Status status;
 
     public Employee(){
         super();
@@ -18,6 +19,13 @@ class Employee {
         this.name = name;
         this.age = age;
         this.salary = salary;
+    }
+
+    public Employee(String name, Integer age, Float salary, Status status) {
+        this.name = name;
+        this.age = age;
+        this.salary = salary;
+        this.status = status;
     }
 
     public String getName() {
@@ -70,6 +78,15 @@ class Employee {
                 "name='" + name + '\'' +
                 ", age=" + age +
                 ", salary=" + salary +
+                ", status=" + status +
                 '}';
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }
