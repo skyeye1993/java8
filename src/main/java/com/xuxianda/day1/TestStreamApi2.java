@@ -1,10 +1,9 @@
-package com.xuxianda;
+package com.xuxianda.day1;
 
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
 

@@ -1,7 +1,6 @@
-package com.xuxianda;
+package com.xuxianda.day1;
 
 import org.junit.Test;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import java.util.*;
 import java.util.stream.Collectors;

@@ -1,4 +1,4 @@
-package com.xuxianda;
+package com.xuxianda.day1;
 
 class Employee {
 

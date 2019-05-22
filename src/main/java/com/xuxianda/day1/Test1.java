@@ -1,6 +1,10 @@
-package com.xuxianda;
+package com.xuxianda.day1;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @Author: xuxianda
@@ -12,5 +16,6 @@ public class Test1 {
     public static void print1(Character c){
         System.out.println(c);
     }
+
 }
 
