@@ -27,7 +27,6 @@ public class TestStreamApi2 {
 
     //中间操作
 
-
     /*
         筛选与切片
         filter--接收lambda，从流中排除某些元素。
