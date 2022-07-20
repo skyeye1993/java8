@@ -25,7 +25,6 @@ public class TestStreamApi2 {
             new Employee("田七",55,5555.555f)
     );
 
-
     //中间操作
 
     /*
